@@ -1,0 +1,6 @@
+<app-login *ngIf="!loginService.isUserLoggedIn()"></app-login>
+<p *ngIf="loginService.isUserLoggedIn()">dashboard works!
+        <button (click)="loginService.logOut()" class="btn btn-danger">logout</button>
+</p>
+
+

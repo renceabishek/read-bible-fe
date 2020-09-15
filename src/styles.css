@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+html, body { height: 100%; background-color: #fafafa }
+body { margin: 0; font-family: cursive, "Helvetica Neue", sans-serif; }
+
+.full-height {
+height: 100%;
+}
+
+.full-width {
+    width: 100px !important
+}
+.font-size-13 {
+    font-size: 13px !important
+}
+.color-orangered {
+    color:orangered
+}
+.color-dodgerblue {
+    color:dodgerblue
+}

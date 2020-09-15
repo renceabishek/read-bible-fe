@@ -1,0 +1,48 @@
+<div fxLayout="row" fxLayoutAlign="space-around" class="full-height">
+    <div fxShow="true" fxHide.lt-md="true" fxFlex="60" class="leftside-image">
+
+    </div>
+    <div fxShow="true" fxFlex fxLayout="column" fxLayoutAlign="center center">
+        <div class="boxborder" fxLayout="column" fxLayoutAlign="center center">
+            <div>
+                <h1> ReadBible</h1>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Username / Email</mat-label>
+                    <input matInput placeholder="Enter the username/email" name="username" [(ngModel)]="username">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter the password" name="password" [(ngModel)]="password">
+                </mat-form-field>
+            </div>
+
+
+            <div>
+                <button class="btn btn-info full-width" (click)="checkLogin()">
+                    Log In
+                </button>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div>
+                <mat-icon svgIcon="google"></mat-icon>
+                <button class="btn shadow-none color-orangered">
+
+                    Log In with Gmail</button>
+            </div>
+            <div>
+                <button type="button" class="btn shadow-none font-size-13 color-dodgerblue">Forgot password?</button>
+            </div>
+        </div>
+        <div class="boxborder">
+            <span class="font-size-13">Don't have an account?
+                <button class="btn shadow-none font-size-13 color-orangered">Sign Up</button>
+            </span>
+        </div>
+    </div>
+</div>
