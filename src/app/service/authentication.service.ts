@@ -8,7 +8,7 @@ import { Profile } from '../model/Profile';
 })
 export class AuthenticationService {
 
-  private readonly URL ="http://localhost:8082/";
+  private readonly URL ="https://read-bible-service.herokuapp.com/";
 
   constructor(private http: HttpClient) { }
 
