@@ -32,14 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    if (this.loginservice.authenticate(this.username, this.password)
-    ) {
-      this.router.navigate([''])
-      //this.router.navigate([{ outlets: {primary: 'admin', adminbar: ['instructions'] } }]);
-      //this.router.navigate([{ outlets: { primary: 'check', adminbar: ['instructions'] } }], {relativeTo: this.route});
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
+    this.loginservice.authenticate(this.username, this.password)
+    this.router.navigate([''])
+     this.invalidLogin = false
   }
-
 }

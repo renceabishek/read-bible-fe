@@ -1,24 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Login } from '../model/Login';
+import { Profile } from '../model/Profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  private readonly URL ="http://localhost:8082/";
+
+  constructor(private http: HttpClient) { }
 
   public authenticate(username, password) {
-    if (username === "bible" && password === "password") {
+     var loginUser=<Login>  {
+     username: username,
+     password: password
+    }
+
+    this.http.post(this.URL+'auth/token',loginUser, {responseType: 'text'})
+    .subscribe(jwtToken=>{
+      sessionStorage.setItem('token', jwtToken)
       sessionStorage.setItem('username', username)
       return true;
-    } else {
-      return false;
-    }
+    })
   }
+
 
   public isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
-    //console.log(!(user === null))
     return !(user === null)
   }
 
