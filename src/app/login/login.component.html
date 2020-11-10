@@ -7,25 +7,28 @@
             <div>
                 <h1> ReadBible</h1>
             </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Username / Email</mat-label>
-                    <input matInput placeholder="Enter the username/email" name="username" [(ngModel)]="username">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Enter the password" name="password" [(ngModel)]="password">
-                </mat-form-field>
-            </div>
+            <form name="form" (ngSubmit)="f.form.valid && checkLogin()" #f="ngForm">
 
-
-            <div>
-                <button class="btn btn-info full-width" (click)="checkLogin()">
-                    Log In
-                </button>
-            </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Username / Email</mat-label>
+                        <input matInput placeholder="Enter the username/email" name="username"
+                            [(ngModel)]="model.username" #username="ngModel">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Enter the password" name="password" [(ngModel)]="model.password"
+                         #password="ngModel">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button class="btn btn-info full-width" type="submit" [disabled]="checkLoginDis()">
+                        Log In
+                    </button>
+                </div>
+            </form>
             <div>
                 <hr>
             </div>

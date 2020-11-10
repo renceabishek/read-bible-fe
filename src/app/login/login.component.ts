@@ -10,10 +10,10 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  username = 'bible'
-  password = ''
+  
   invalidLogin = false
+
+  model: any ={}
 
   constructor(private router: Router,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
@@ -24,6 +24,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkLoginDis(): boolean {
+   return this.model.username==null || this.model.password==null
+  }
+
   addGoogleIcons(): void {
     this.matIconRegistry.addSvgIcon(
       `google`,
@@ -32,7 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    this.loginservice.authenticate(this.username, this.password)
+    //alert("still success")
+    this.loginservice.authenticate(this.model.username, this.model.password)
     this.router.navigate([''])
      this.invalidLogin = false
   }
