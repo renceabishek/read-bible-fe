@@ -1,24 +1,22 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthenticationService } from '../service/authentication.service';
+import { AuthenticationService } from '../../service/authentication.service';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class DashboardComponent implements OnDestroy {
+export class HeaderComponent implements OnDestroy {
 
+  title = 'bible-read-fe';
 
   mobileQuery: MediaQueryList;
 
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
 
-  constructor(private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     private loginService: AuthenticationService) {
       this.mobileQuery = media.matchMedia('(max-width: 959px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

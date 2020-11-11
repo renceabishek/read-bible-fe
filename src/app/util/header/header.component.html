@@ -1,0 +1,63 @@
+<mat-toolbar class="navbar_fixed" *ngIf="loginService.isUserLoggedIn()">
+  <mat-toolbar-row fxLayout="row" fxLayout.xs="row" fxLayoutAlign="start center">
+    <div fxHide="true" fxShow.lt-md="true" fxFlex="10">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+    <div fxHide="true" fxShow.lt-md="true" fxFlex="90" fxLayoutAlign="center center">
+      <button mat-button [routerLink]="'/'">
+        <span style="font-family: cursive; font-size: 19px;"> READ BIBLE </span>
+      </button>
+    </div>
+    <div fxFlex="30" fxShow="true" fxHide.lt-md="true">
+      <button mat-button [routerLink]="'/'">
+        <!-- <mat-icon svgIcon="church" class="church-icon"></mat-icon> -->
+        <span style="font-family: cursive; font-size: 19px;"> READ BIBLE </span>
+      </button>
+    </div>
+    <div fxShow="true" fxFlex="50" fxHide.lt-md="true">
+      <button mat-button [routerLink]="'/dashboard'"> Dashboard </button>
+      <button mat-button [routerLink]="'/status'"> Statistics </button>
+      <button mat-button [routerLink]="'/readers'"> Readers </button>
+      <button mat-button [routerLink]="'/writeup'"> Write-Up </button>
+      <!-- <button mat-icon-button [matMenuTriggerFor]="menu1" fxFlex="15%">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu1="matMenu">
+          <button mat-menu-item [routerLink]="'/post'">
+            <mat-icon>admin</mat-icon>
+            <span>Admin</span>
+          </button>
+        </mat-menu> -->
+
+    </div>
+    <div fxShow="true" fxFlex fxHide.lt-md="true" fxLayoutAlign="end">
+      <img mat-button [matMenuTriggerFor]="beforeMenu" src="../../../assets/socials/male.png">
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Profile</button>
+        <button mat-menu-item>Setting</button>
+        <button mat-menu-item (click)="loginService.logOut()" class="btn btn-danger">Logout</button>
+      </mat-menu>
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+
+<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/dashboard'">Dashboard</a>
+      <a mat-list-item [routerLink]="'/status'">Statistics</a>
+      <a mat-list-item [routerLink]="'/readers'">Readers</a>
+      <a mat-list-item [routerLink]="'/writeup'">Write-Up</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!--   
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content> -->
+</mat-sidenav-container>

@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login } from '../model/Login';
 import { Profile } from '../model/Profile';
 
@@ -8,9 +9,10 @@ import { Profile } from '../model/Profile';
 })
 export class AuthenticationService {
 
-  private readonly URL ="https://read-bible-service.herokuapp.com/";
+  //private readonly URL ="http://localhost:8082/";
+  private readonly URL ="https://readbibleintegration.firebaseio.com/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public authenticate(username, password) {
      var loginUser=<Login>  {
@@ -18,12 +20,8 @@ export class AuthenticationService {
      password: password
     }
 
-    this.http.post(this.URL+'auth/token',loginUser, {responseType: 'text'})
-    .subscribe(jwtToken=>{
-      sessionStorage.setItem('token', jwtToken)
-      sessionStorage.setItem('username', username)
-      return true;
-    })
+   return this.http.post(this.URL+'auth/token',loginUser, {responseType: 'text'})
+    
   }
 
 
@@ -34,5 +32,7 @@ export class AuthenticationService {
 
   public logOut() {
     sessionStorage.removeItem('username')
+    sessionStorage.removeItem('token')
+    this.router.navigate([''])
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -12,16 +12,23 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LoginComponent implements OnInit {
   
   invalidLogin = false
+   routeTo="";
 
   model: any ={}
 
   constructor(private router: Router,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private loginservice: AuthenticationService, private route: ActivatedRoute) {
+      this.router.events.subscribe(value => {
+        if (value instanceof NavigationStart) {
+          this.routeTo = value.url;
+        }
+      });
       this.addGoogleIcons()
      }
 
   ngOnInit() {
+    
   }
 
   checkLoginDis(): boolean {
@@ -38,7 +45,17 @@ export class LoginComponent implements OnInit {
   checkLogin() {
     //alert("still success")
     this.loginservice.authenticate(this.model.username, this.model.password)
-    this.router.navigate([''])
-     this.invalidLogin = false
+    .subscribe(jwtToken=>{
+      sessionStorage.setItem('token', jwtToken)
+      sessionStorage.setItem('username', this.model.username)
+      this.router.navigate([this.routeTo])
+      this.invalidLogin=false;
+    },
+    error=>{
+      console.log("print "+error.status)
+      if(error.status="401") {
+        this.invalidLogin=true;
+      }
+    })
   }
 }

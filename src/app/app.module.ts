@@ -10,15 +10,30 @@ import { AppComponent } from './app.component';
 import { MatInputModule  } from  '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule} from '@angular/material/menu';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatListModule} from '@angular/material/list';
+import { MatButtonModule} from '@angular/material/button';
+import { MatButtonToggleModule} from '@angular/material/button-toggle';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { ReadersComponent } from './readers/readers.component';
+import { WriteUpComponent } from './write-up/write-up.component';
+import { HeaderComponent } from './util/header/header.component';
+import { FooterComponent } from './util/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    StatisticsComponent,
+    ReadersComponent,
+    WriteUpComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +45,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatInputModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
