@@ -1,4 +1,4 @@
-<mat-toolbar class="navbar_fixed" *ngIf="loginService.isUserLoggedIn()">
+<mat-toolbar class="navbar_fixed" *ngIf="this.loginService.isUserLoggedIn()">
   <mat-toolbar-row fxLayout="row" fxLayout.xs="row" fxLayoutAlign="start center">
     <div fxHide="true" fxShow.lt-md="true" fxFlex="10">
       <button mat-icon-button (click)="snav.toggle()">
@@ -37,7 +37,7 @@
       <mat-menu #beforeMenu="matMenu" xPosition="before">
         <button mat-menu-item>Profile</button>
         <button mat-menu-item>Setting</button>
-        <button mat-menu-item (click)="loginService.logOut()" class="btn btn-danger">Logout</button>
+        <button mat-menu-item (click)="this.loginService.logOut()" class="btn btn-danger">Logout</button>
       </mat-menu>
     </div>
 
