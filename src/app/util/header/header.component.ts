@@ -17,7 +17,7 @@ export class HeaderComponent implements OnDestroy {
 
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-    private loginService: AuthenticationService) {
+    public loginService: AuthenticationService) {
       this.mobileQuery = media.matchMedia('(max-width: 959px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

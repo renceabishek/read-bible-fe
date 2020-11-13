@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private loginservice: AuthenticationService, private route: ActivatedRoute) {
+    public loginservice: AuthenticationService, private route: ActivatedRoute) {
       this.router.events.subscribe(value => {
         if (value instanceof NavigationStart) {
           this.routeTo = value.url;

@@ -10,7 +10,7 @@ import { AuthenticationService } from './service/authentication.service';
 export class AppComponent {
   title = 'read-bible-fe';
 
-  constructor(private loginService: AuthenticationService, private route: ActivatedRoute) {
+  constructor(public loginService: AuthenticationService, private route: ActivatedRoute) {
     
   }
 
