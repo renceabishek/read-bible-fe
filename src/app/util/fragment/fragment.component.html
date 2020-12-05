@@ -1,0 +1,2 @@
+<app-main-login *ngIf="!this.loginService.isUserLoggedIn()"></app-main-login>
+<app-dashboard *ngIf="this.loginService.isUserLoggedIn()"></app-dashboard>

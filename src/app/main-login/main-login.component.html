@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="space-around" class="full-height">
+    <div fxShow="true" fxHide.lt-md="true" fxFlex="60" class="leftside-image">
+
+    </div>
+    <div fxShow="true" fxFlex fxLayout="column" fxLayoutAlign="center center" 
+                [@routeAnimation]="getAnimationData(routerOutlet)">
+        <router-outlet #routerOutlet="outlet"></router-outlet>
+    </div>
+</div>

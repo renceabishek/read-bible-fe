@@ -2,7 +2,7 @@
   border: 1px solid rgba(var(--b6a,219,219,219),1);
   border-radius: 1px;
   margin: 0 0 10px;
-  padding: 10px 85px;
+  padding: 10px 57px;
   background-color: rgba(var(--d87,255,255,255),1);
 }
 
@@ -11,8 +11,10 @@ div>h1 {
   font-family: cursive;
 }
 
-.leftside-image {
-  background-image: url('../../assets/images/leftside-image.jpg');
-  background-repeat: no-repeat;
-  background-size: cover
+form>div {
+  height: 65px;
+}
+
+mat-form-field {
+  width: 300px;
 }

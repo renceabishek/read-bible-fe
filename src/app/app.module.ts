@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -15,25 +15,19 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule} from '@angular/material/list';
 import { MatButtonModule} from '@angular/material/button';
 import { MatButtonToggleModule} from '@angular/material/button-toggle';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StatisticsComponent } from './statistics/statistics.component';
 import { ReadersComponent } from './readers/readers.component';
 import { WriteUpComponent } from './write-up/write-up.component';
-import { HeaderComponent } from './util/header/header.component';
 import { FooterComponent } from './util/footer/footer.component';
+import { FragmentComponent } from './util/fragment/fragment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    LoginComponent,
-    StatisticsComponent,
     ReadersComponent,
     WriteUpComponent,
-    HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FragmentComponent
   ],
   imports: [
     BrowserModule,
@@ -41,17 +35,8 @@ import { FooterComponent } from './util/footer/footer.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,
-    MatIconModule,
-    MatInputModule,
-    MatMenuModule,
-    FlexLayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatButtonToggleModule
-  ],
+    FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

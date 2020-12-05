@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from '../model/Login';
 import { Profile } from '../model/Profile';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,17 @@ export class AuthenticationService {
     
   }
 
+  public registerUser(user) {
+    return this.http.post(this.URL+'auth/register', user)
+  }
+
+  public sendConfirmationLink(username) {
+    var user=<User> {
+      username: username
+    }
+    return this.http.post(this.URL+'auth/confirmation-link', user);
+  }
+
 
   public isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
@@ -33,6 +45,6 @@ export class AuthenticationService {
   public logOut() {
     sessionStorage.removeItem('username')
     sessionStorage.removeItem('token')
-    this.router.navigate([''])
+    this.router.navigate(['accounts/login'])
   }
 }

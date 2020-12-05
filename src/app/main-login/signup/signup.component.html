@@ -1,0 +1,60 @@
+<div class="boxborder" fxLayout="column" fxLayoutAlign="center center">
+    <div>
+        <h1> ReadBible</h1>
+    </div>
+    <form name="form" (ngSubmit)="onSubmit(signUpForm)" #f="ngForm" 
+        #signUpForm="ngForm" [formGroup] = "signup"
+        fxShow="true" fxFlex fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="4px">
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Enter the email" name="email" formControlName="email" (blur)="updateUsername($event)">
+            </mat-form-field>
+        </div>
+        <div id="error_block" *ngIf="invalidSignup" style="font-size: 12px; color:red;text-align: center;">
+            This email is already registered! Please try with different mail.
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input matInput placeholder="Enter your fullname" name="fullname" formControlName="fullname">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>User Name</mat-label>
+                <input matInput placeholder="Enter your username" name="username" formControlName="username">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Enter the password" name="password" formControlName="password">
+            </mat-form-field>
+        </div>
+        <div>
+            <button class="btn btn-info height_40" type="submit" [disabled]="signup.invalid" fxFlex="98">
+                Sign Up
+            </button>
+        </div>
+    </form>
+    <div fxFlex style="width: 200px;">
+        <div *ngIf="invalidLogin" style="font-size: 12px; color:red;text-align: center;">
+            Sorry, your username/password was incorrect. Please double-check.
+        </div>
+        <hr>
+    </div>
+    <div>
+        <mat-icon svgIcon="google"></mat-icon>
+        <button class="btn shadow-none color-darkred">
+            Sign Up with Gmail</button>
+    </div>
+</div>
+<div class="boxborder"  fxLayout="row" fxLayoutAlign="center center">
+    <span class="font-size-13">Already have an account?
+    </span>
+    <button class="btn shadow-none font-size-13 color-darkred"
+        [routerLink]="'/accounts/login'" >Log In
+    </button>
+</div>

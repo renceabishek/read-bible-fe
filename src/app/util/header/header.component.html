@@ -1,4 +1,4 @@
-<mat-toolbar class="navbar_fixed" *ngIf="this.loginService.isUserLoggedIn()">
+<mat-toolbar class="navbar_fixed" >
   <mat-toolbar-row fxLayout="row" fxLayout.xs="row" fxLayoutAlign="start center">
     <div fxHide="true" fxShow.lt-md="true" fxFlex="10">
       <button mat-icon-button (click)="snav.toggle()">
@@ -17,7 +17,7 @@
       </button>
     </div>
     <div fxShow="true" fxFlex="50" fxHide.lt-md="true">
-      <button mat-button [routerLink]="'/dashboard'"> Dashboard </button>
+      <button mat-button [routerLink]="'/'"> Dashboard </button>
       <button mat-button [routerLink]="'/status'"> Statistics </button>
       <button mat-button [routerLink]="'/readers'"> Readers </button>
       <button mat-button [routerLink]="'/writeup'"> Write-Up </button>

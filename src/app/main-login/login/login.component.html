@@ -1,0 +1,49 @@
+<div class="boxborder" fxLayout="column" fxLayoutAlign="center center">
+    <div>
+        <h1> ReadBible</h1>
+    </div>
+    <form name="form" (ngSubmit)="f.form.valid && checkLogin()" #f="ngForm" fxShow="true" fxFlex fxLayout="column"
+        fxLayoutAlign="center stretch" fxLayoutGap="4px">
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Username / Email</mat-label>
+                <input matInput placeholder="Enter the username/email" name="username" [(ngModel)]="model.username"
+                    #username="ngModel">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Enter the password" name="password" [(ngModel)]="model.password"
+                    #password="ngModel">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <button class="btn btn-info height_40" type="submit" [disabled]="checkLoginDis()" fxFlex="98">
+                Log In
+            </button>
+        </div>
+    </form>
+    <div fxFlex style="width: 200px;">
+        <div *ngIf="invalidLogin" style="font-size: 12px; color:red;text-align: center;">
+            Sorry, your username/password was incorrect. Please double-check.
+        </div>
+        <hr>
+    </div>
+    <div>
+        <mat-icon svgIcon="google"></mat-icon>
+        <button class="btn shadow-none color-darkred">
+
+            Log In with Gmail</button>
+    </div>
+    <div>
+        <button type="button" class="btn shadow-none font-size-13 color-dodgerblue">Forgot password?</button>
+    </div>
+</div>
+<div class="boxborder" fxLayout="row" fxLayoutAlign="center center">
+    <span class="font-size-13">Don't have an account?
+    </span>
+    <button class="btn shadow-none font-size-13 color-darkred"
+        [routerLink]="'/accounts/signup'" > Sign Up </button>
+</div>

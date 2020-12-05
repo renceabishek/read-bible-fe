@@ -1,0 +1,38 @@
+<div style="margin: 44px;">
+    <div class="boxborder" fxLayout="column" fxLayoutAlign="center center">
+        <div>
+            <h1> ReadBible</h1>
+        </div>
+        <div 
+            fxShow="true" fxFlex fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="4px">
+            <div style="color: steelblue; text-align: center;" fxShow="true">
+                {{divMessage}}
+            </div>
+            <div *ngIf="isShow">
+                <mat-checkbox [(ngModel)]="disabled">I need confirmation link!
+                </mat-checkbox>
+            </div>
+            <div *ngIf="isShow">
+                <button class="btn btn-info height_40" type="submit" [disabled]="!disabled" fxFlex="98" 
+                        (click)="reSendConfirmationLink()">Send</button>
+            </div>
+        </div>
+        <div>
+            <hr>
+        </div>
+        <div>
+            <mat-icon svgIcon="google"></mat-icon>
+            <button class="btn shadow-none color-darkred">
+
+                Log In with Gmail</button>
+        </div>
+        <div>
+            <button type="button" class="btn shadow-none font-size-13 color-dodgerblue">Forgot password?</button>
+        </div>
+    </div>
+    <div class="boxborder" fxLayout="row" fxLayoutAlign="center center">
+        <span class="font-size-13">Already have an account?
+        </span>
+        <button class="btn shadow-none font-size-13 color-darkred" [routerLink]="'/accounts/login'">Log In</button>
+    </div>
+</div>

@@ -1,4 +1,2 @@
-
-<app-header *ngIf="this.loginService.isUserLoggedIn()"></app-header>
-<app-login *ngIf="!this.loginService.isUserLoggedIn()"></app-login>
-<router-outlet *ngIf="this.loginService.isUserLoggedIn()"></router-outlet>
+<!-- <app-main-login *ngIf="!this.loginService.isUserLoggedIn()"></app-main-login> -->
+<router-outlet></router-outlet>
