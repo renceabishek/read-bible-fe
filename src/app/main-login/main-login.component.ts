@@ -11,17 +11,9 @@ import { slideInAnimation } from './animations';
 export class MainLoginComponent implements OnInit {
 
   constructor(private router: Router) { 
-    // const config = this.router.config;
-    //   config.push({
-    //     path: 'dash',
-    //     loadChildren: () => import('../main-app/main-app.module').then(m => m.MainAppModule)
-    //   });
-    //   this.router.resetConfig(config);
-    //   this.router.navigate(['dash']);
   }
 
   ngOnInit(): void {
-    //this.router.navigate([{ outlets: { signuplogin: ['login'] } }])
   }
 
   getAnimationData(outlet: RouterOutlet) {

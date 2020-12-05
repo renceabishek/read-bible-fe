@@ -62,10 +62,6 @@ export class SignupComponent implements OnInit {
     
   }
 
-  // checkSignUpDis(): boolean {
-  //   return this.model.username==null || this.model.password==null || this.model.email==null || this.model.fullname==null
-  //  }
-
 
   updateUsername(data): void {
 

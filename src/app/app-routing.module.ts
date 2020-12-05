@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WriteUpComponent } from './write-up/write-up.component';
 import { ReadersComponent } from './readers/readers.component';
-import { SignupComponent } from './main-login/signup/signup.component';
-import { LoginComponent } from './main-login/login/login.component';
-import { FragmentComponent } from './util/fragment/fragment.component';
 import { AuthGuardService } from './service/auth-guard.service';
 
 
