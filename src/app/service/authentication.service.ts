@@ -10,8 +10,8 @@ import { User } from '../model/User';
 })
 export class AuthenticationService {
 
-  //private readonly URL ="http://localhost:8082/";
-  private readonly URL ="https://read-bible-service.herokuapp.com/";
+  private readonly URL ="http://localhost:8082/";
+  //private readonly URL ="https://read-bible-service.herokuapp.com/";
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -38,13 +38,13 @@ export class AuthenticationService {
 
 
   public isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
+    let user = localStorage.getItem('username')
     return !(user === null)
   }
 
   public logOut() {
-    sessionStorage.removeItem('username')
-    sessionStorage.removeItem('token')
+    localStorage.removeItem('username')
+    localStorage.removeItem('token')
     this.router.navigate(['accounts/login'])
   }
 }

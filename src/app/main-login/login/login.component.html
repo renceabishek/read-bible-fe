@@ -20,7 +20,8 @@
             </mat-form-field>
         </div>
         <div fxFlex>
-            <button class="btn btn-info height_40" type="submit" [disabled]="checkLoginDis()" fxFlex="98">
+            <button class="btn btn-info height_40" type="submit" [disabled]="checkLoginDis() || loading" fxFlex="98">
+                <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
                 Log In
             </button>
         </div>
@@ -38,7 +39,9 @@
             Log In with Gmail</button>
     </div>
     <div>
-        <button type="button" class="btn shadow-none font-size-13 color-dodgerblue">Forgot password?</button>
+        <button type="button" class="btn shadow-none font-size-13 color-dodgerblue">Forgot password?
+            
+        </button>
     </div>
 </div>
 <div class="boxborder" fxLayout="row" fxLayoutAlign="center center">

@@ -14,6 +14,7 @@ import { LoginService } from '../service/login.service';
 export class LoginComponent implements OnInit {
 
   invalidLogin = false
+  loading = false;
   routeTo = "";
   divMessage = {
     message: "You still need to verify your email address for this account by confirmation link. If you haven't "+
@@ -45,15 +46,18 @@ export class LoginComponent implements OnInit {
   checkLogin() {
     this.invalidLogin = false;
     this.loginguard.invalidLogin = false;
+    this.loading = true;
     this.authenticationService.authenticate(this.model.username, this.model.password)
       .subscribe(jwtToken => {
-        sessionStorage.setItem('token', jwtToken)
-        sessionStorage.setItem('username', this.model.username)
+        localStorage.setItem('token', jwtToken)
+        localStorage.setItem('username', this.model.username)
         this.router.navigate([this.routeTo])
         this.invalidLogin = false;
+        this.loading = false;
       },
         err => {
-
+          
+          this.loading = false;
           let errorResponse = err as ApiErrorResponse
           let error = JSON.parse(err.error) as ApiError;
 
