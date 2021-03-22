@@ -21,6 +21,7 @@
       <button mat-button [routerLink]="'/status'"> Statistics </button>
       <button mat-button [routerLink]="'/readers'"> Readers </button>
       <button mat-button [routerLink]="'/writeup'"> Write-Up </button>
+      <button *ngIf="isAdmin" mat-button [routerLink]="'/admin'"> Admin </button>
       <!-- <button mat-icon-button [matMenuTriggerFor]="menu1" fxFlex="15%">
           <mat-icon>menu</mat-icon>
         </button>
@@ -35,8 +36,8 @@
     <div fxShow="true" fxFlex fxHide.lt-md="true" fxLayoutAlign="end">
       <img mat-button [matMenuTriggerFor]="beforeMenu" src="../../../assets/socials/male.png">
       <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>Profile</button>
-        <button mat-menu-item>Setting</button>
+        <button mat-menu-item [routerLink]="'/myprofile'">Profile</button>
+        <button mat-menu-item [routerLink]="'/setting'">Setting</button>
         <button mat-menu-item (click)="this.loginService.logOut()" class="btn btn-danger">Logout</button>
       </mat-menu>
     </div>
@@ -54,10 +55,11 @@
       <a mat-list-item [routerLink]="'/status'">Statistics</a>
       <a mat-list-item [routerLink]="'/readers'">Readers</a>
       <a mat-list-item [routerLink]="'/writeup'">Write-Up</a>
+      <a mat-list-item *ngIf="isAdmin" [routerLink]="'/admin'">Admin</a>
     </mat-nav-list>
   </mat-sidenav>
-  <!--   
+    
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content> -->
+      <!-- <router-outlet></router-outlet> -->
+    </mat-sidenav-content>
 </mat-sidenav-container>

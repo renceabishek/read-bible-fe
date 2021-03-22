@@ -1,0 +1,65 @@
+<div class="card m-3 box">
+    <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
+        <h5 fxFlex="60">My Profile</h5>
+    </div>
+
+    <div fxLayout="row wrap">
+        <div fxFlex="90" fxLayoutAlign="center center" class="avatar-upload">
+            <div class="avatar-edit">
+                <input type='file' id="imageUpload" (change)="changePicture($event)" accept=".png, .jpg, .jpeg" />
+                <label for="imageUpload"></label>
+            </div>
+            <div class="avatar-preview">
+                <img id="imagePreview" [src]="avatarBackGround">
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="profileForm" class="responsive-font" fxLayout="row" fxLayout.xs="column"
+                fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch" fxLayout.sm="column"
+                fxLayoutAlign.sm="start stretch" 
+                (ngSubmit)="onSave()" fxLayoutGap="2px grid">
+
+
+            <div fxFlex="20">
+
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>NAME</mat-label>
+                    <input matInput placeholder="Enter the name" formControlName="name">
+                    <mat-error *ngIf="errorHandling('name', 'required')">
+                        You must provide your name
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="20">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput disabled formControlName="username">
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="20">
+                <mat-form-field appearance="outline">
+                    <input formControlName="dob" matInput [matDatepicker]="picker1" placeholder="Enter D.O.B">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+            
+            
+            <div fxFlex="20">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter the email" disabled formControlName="email">
+                </mat-form-field>
+            </div>
+            
+            <div fxFlex>
+                    <button  id="btn_bibleinfo_save"
+                        [disabled]="profileForm.invalid" class="btn btn-primary" type="submit">Update</button>
+            </div>
+
+        </form>
+    </div>
+</div>

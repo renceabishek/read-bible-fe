@@ -1,0 +1,18 @@
+<br><br>
+<mat-toolbar>
+  <mat-toolbar-row fxLayout="row" fxLayout.xs="row" fxLayoutAlign="start center">
+    <div fxHide="true" fxShow.lt-md="true" fxFlex="10">
+      <button mat-button (click)="onNoClick()">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+    </div>
+    <div fxHide="true" fxShow.lt-md="true" fxFlex="90" fxLayoutAlign="center center">
+      <input type="text" [matAutocomplete]="autoname" placeholder="Name"/>
+      <mat-autocomplete #autoname="matAutocomplete">
+        <mat-option *ngFor="let name of filteredNames | async" [value]="name">
+          {{name}}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

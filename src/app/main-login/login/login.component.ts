@@ -43,13 +43,15 @@ export class LoginComponent implements OnInit {
     return this.model.username == null || this.model.password == null
   }
 
+  JWT_TOKEN = "jwt-token";
+
   checkLogin() {
     this.invalidLogin = false;
     this.loginguard.invalidLogin = false;
     this.loading = true;
     this.authenticationService.authenticate(this.model.username, this.model.password)
       .subscribe(jwtToken => {
-        localStorage.setItem('token', jwtToken)
+        localStorage.setItem(this.JWT_TOKEN, jwtToken)
         localStorage.setItem('username', this.model.username)
         this.router.navigate([this.routeTo])
         this.invalidLogin = false;

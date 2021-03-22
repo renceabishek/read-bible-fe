@@ -1,0 +1,56 @@
+<div class="card m-3 box">
+    <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
+        <h5 fxFlex="60">Setting</h5>
+    </div>
+
+    <div fxLayout="row wrap">
+        <div class="card-body" fxFlex="40">
+            <form [formGroup]="settingForm" class="responsive-font" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch" fxLayout.sm="column"
+                    fxLayoutAlign.sm="start stretch" 
+                    (ngSubmit)="onLink()" fxLayoutGap="2px grid">
+    
+            
+                    <div>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>NAME</mat-label>
+                            <input matInput formControlName="name"  [matAutocomplete]="autoname"
+                                forceSelection="true" placeholder="Enter the name" />
+                            <mat-error *ngIf="errorHandling('name', 'required')">
+                                Name is required
+                            </mat-error>
+                            <mat-autocomplete #autoname="matAutocomplete" [displayWith]="displayFn"
+                                (optionSelected)="selectName($event.option.value)">
+                                <mat-option  *ngFor="let fname of filteredNames | async" [value]="fname">
+                                    {{fname.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+    
+                    <div>
+                        <!-- <mat-form-field>
+                            <mat-label>Note: </mat-label>
+                        </mat-form-field> -->
+                    </div>
+                    <div fxFlex>
+                        <button class="btn btn-info height_40" type="submit" [disabled]="settingForm.invalid" fxFlex="98">
+                            <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+                            Link
+                        </button>
+                    </div>
+    
+            </form>
+        </div>
+        <div fxFlex="40" fxLayoutAlign="center center" class="avatar-upload">
+            <div class="avatar-edit">
+                <input type='file' id="imageUpload" (change)="changePicture($event)" accept=".png, .jpg, .jpeg" />
+                <label for="imageUpload"></label>
+            </div>
+            <div class="avatar-preview">
+                <img id="imagePreview" [src]="avatarBackGround">
+            </div>
+        </div>
+    </div>
+    
+</div>

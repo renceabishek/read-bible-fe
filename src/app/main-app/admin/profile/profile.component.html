@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="4px grid" >
+    <div fxFlex="90" fxLayoutAlign="center center" class="avatar-upload">
+        <div class="avatar-edit">
+            <input type='file' id="imageUpload" (change)="changePicture($event)" accept=".png, .jpg, .jpeg" />
+            <label for="imageUpload"></label>
+        </div>
+        <div class="avatar-preview">
+            <img id="imagePreview" [src]="avatarBackGround">
+        </div>
+    </div>
+    <form name="form" class="responsive-font" fxLayout="column wrap" fxLayout.xs="column"
+            fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch" fxLayout.sm="column"
+            fxLayoutAlign.sm="start stretch" 
+            (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" fxLayoutGap="2px grid">
+        
+            <div fxFlex="20">
+                <mat-form-field appearance="outline">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput placeholder="Enter your fullname" name="fullname" [(ngModel)]="model.fullname"
+                        #fullname="ngModel">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <button class="btn btn-primary mr-1" type="submit" >
+                    <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+                    Save
+                </button>
+            </div>
+        </form>
+</div>

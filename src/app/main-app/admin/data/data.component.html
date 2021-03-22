@@ -1,0 +1,126 @@
+<div fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center stretch" fxLayoutGap="4px grid" >
+
+    <form #form="ngForm" [formGroup]="dataForm" class="responsive-font" fxLayout="row wrap" fxLayout.xs="column"
+                fxLayoutAlign="center stretch" fxLayoutAlign.xs="start stretch" fxLayout.sm="column"
+                fxLayoutAlign.sm="start stretch" fxLayoutGap="4px grid" (ngSubmit)="onSave()">
+
+                <div fxFlex="20" fxShow="true" fxHide.lt-md="true">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>NAME</mat-label>
+                        <input matInput formControlName="name"  [matAutocomplete]="autoname"
+                            forceSelection="true" placeholder="Enter the name" />
+                        <mat-error *ngIf="errorHandling('name', 'required')">
+                            Name is required
+                        </mat-error>
+                        <mat-autocomplete #autoname="matAutocomplete" [displayWith]="displayFn"
+                            (optionSelected)="selectName($event.option.value)">
+                            <mat-option  *ngFor="let fname of filteredNames | async" [value]="fname">
+                                {{fname.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+                <div fxFlex="40" fxHide="true" fxShow.lt-md="true">
+                    <input type="button" formControlName="name" class="form-control" placeholder="Name"
+                        (click)="openNameDialog()" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                </div>
+                
+                <div fxFlex="20" fxShow="true" fxHide.lt-md="true">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input formControlName="date" matInput [matDatepicker]="picker1" placeholder="Enter the Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+
+                        <mat-error *ngIf="errorHandling('date', 'required')">
+                            Date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                
+                <div fxFlex="25" fxHide="true" fxShow.lt-md="true">
+                    <input type="button" formControlName="date" class="form-control" placeholder="Date" />
+                </div>
+                <div fxFlex="15">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Books</mat-label>
+                        <input matInput formControlName="books" [matAutocomplete]="autobooks" placeholder="Books"
+                            (change)="checkSelectedBook()" />
+                        <mat-error *ngIf="errorHandling('books', 'required')">
+                            Book is required
+                        </mat-error>
+                        <mat-autocomplete #autobooks="matAutocomplete"
+                            (optionSelected)="selectBook($event.option.value)">
+                            <mat-option *ngFor="let fbook of filteredBooks | async" [value]="fbook">
+                                {{fbook}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="10">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Chapter</mat-label>
+                        <input matInput formControlName="chapter" placeholder="Chapter" minlength="1" maxlength="3"
+                            (keypress)="numberValidator($event)" (focusout)="toSetToVerse()" />
+
+                        <mat-error *ngIf="errorHandling('chapter', 'required')">
+                            Chapter is required
+                        </mat-error>
+
+                        <mat-error *ngIf="errorHandling('chapterBelong', 'required')">
+                            Chapter is not belonged
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="10">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>From Verse</mat-label>
+                        <input matInput formControlName="fromVerse" placeholder="From Verse" minlength="1" maxlength="3"
+                            (keypress)="numberValidator($event)" />
+
+                        <mat-error *ngIf="errorHandling('fromVerse', 'required')">
+                            FromVerse is required
+                        </mat-error>
+                        <mat-error *ngIf="errorHandling('verseBelong', 'required')">
+                            From Verse is not belonged
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="10">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>To Verse</mat-label>
+                        <input matInput formControlName="toVerse" placeholder="To Verse" minlength="1" maxlength="3"
+                            (keypress)="numberValidator($event)" />
+
+                        <mat-error *ngIf="errorHandling('toVerse', 'required')">
+                            To Verse is required
+                        </mat-error>
+                        <mat-error *ngIf="errorHandling('toVerseGreater', 'required')">
+                            From verse should not be greater than
+                            To Verse
+                        </mat-error>
+                        <mat-error *ngIf="errorHandling('verseBelong', 'required')">
+                            To Verse is not belonged
+                        </mat-error>
+
+                    </mat-form-field>
+
+                </div>
+                <div fxFlex="100" fxLayout="row" fxLayout.lt.sm="column" fxLayoutAlign="center center"
+                    fxLayoutAlign.lt-md="center center" fxLayoutGap="4px">
+                    <button fxFlex="10" fxFlex.sm="15" fxFlex.xs="15" id="btn_bibleinfo_save" fxHide={{saveUP}}
+                        [disabled]="dataForm.invalid" class="btn btn-primary" type="submit">Save</button>
+                    <button fxFlex="10" fxFlex.sm="15" fxFlex.xs="15" id="btn_bibleinfo_save" fxHide={{!saveUP}}
+                        [disabled]="dataForm.invalid" class="btn btn-primary" type="submit">Update</button>
+                    <a fxFlex="10" fxFlex.sm="15" fxFlex.xs="15" class="btn btn-secondary"
+                        (click)="onReset()">Clear</a>
+                    <button fxFlex="10" fxFlex.sm="15" fxFlex.xs="15" class="btn btn-danger"
+                        [disabled]="dataForm.invalid" (click)="onDeleteRows()">Delete</button>
+                </div>
+    </form>
+ 
+    <div style="margin-top: 22px;">
+                <app-admin-data-datatable (rowValue)="selectRowValue($event)"></app-admin-data-datatable>
+    </div>
+</div>
